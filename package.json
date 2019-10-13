@@ -1,0 +1,31 @@
+{
+  "name": "browsershots",
+  "version": "1.0.0",
+  "description": "browsershots",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hrisak/browsershots.git"
+  },
+  "keywords": [
+    "browsershots",
+    "javascript",
+    "ejs",
+    "nodejs",
+    "postgresql"
+  ],
+  "author": "Steven Hrisak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hrisak/browsershots/issues"
+  },
+  "homepage": "https://github.com/hrisak/browsershots#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^7.12.1"
+  }
+}
