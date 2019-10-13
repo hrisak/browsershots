@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load static %}
+<html lang="{{ LANGUAGE_CODE }}">
+    <head>
+        <meta charset="utf-8" />        
+        <title>{% block head_title_base %}{% if SITE_NAME %}{{ SITE_NAME }} | {% endif %}{% block head_title %}{% endblock %}{% endblock %}</title>        
+        {% block viewport %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% endblock %}
+        <link rel="shortcut icon" type="image/ico" href="{% static 'favicon.ico' %}">    
+    </head>
+ <body>
+   
+  <div class="container-fluid">
+      <div class="row">
+        <div class="container-fluid">
+        <a href="#sidebar" data-toggle="collapse"><i class="fa fa-navicon fa-lg"></i></a>  <a href="/" class="logo"><img src="{% static "images/browsershots.jpg" %}" alt="BrowserShots" /></a>
+        </div>             
+        <div aria-expanded="false" class="menu collapse" id="sidebar">
+            <div class="list-group panel">               
+                <a href="/" class="list-group-item collapsed" data-parent="sidebar"><i class="fa fa-dashboard"></i> <span>Home</span></a>
+                <a href="{% url "screenshots" %}" class="list-group-item collapsed" data-parent="sidebar"><i class="fa fa-picture-o"></i> <span>Screen Shots</span></a>
+                <a href="{% url "pending" %}" class="list-group-item collapsed" data-parent="sidebar"><i class="fa fa-hourglass-o"></i> <span>Pending Shots</span></a>
+                <a href="{% url "devicelist" %}" class="list-group-item collapsed" data-parent="sidebar"><i class="fa fa-list"></i> <span>Device List</span></a>
+                <a href="{% url "documentation" %}" class="list-group-item collapsed" data-parent="sidebar"><i class="fa fa-book"></i> <span>Documentation</span></a>
+                <a href="{% url "pricing" %}" class="list-group-item collapsed" data-parent="sidebar"><i class="fa fa-shopping-cart"></i> <span>Pricing</span></a>
+                <a href="{% url "privacy" %}" class="list-group-item collapsed" data-parent="sidebar"><i class="fa fa-user-secret"></i> <span>Privacy</span></a>
+                <a href="{% url "terms" %}" class="list-group-item collapsed" data-parent="sidebar"><i class="fa fa-lightbulb-o"></i> <span>Terms</span></a>                
+            </div>
+        </div>
+    
+        
+            <div class="container-fluid">            
+                
+                {% block extra_head %}	
+                {% endblock %}
+            </div>           
+   
+            <hr>
+            
+            <script type="text/javascript" src="{% static 'js/browser_screenshots.js' %}"></script>
+            <script>						
+				function sendinfo (d) { 							
+						$.ajax({
+							type: "POST",
+							url: "{% url 'chkbox_set' %}",
+							data: {
+							csrfmiddlewaretoken: "{{ csrf_token }}",
+							value : d,
+							}
+								
+						});
+					}
+			</script>
+            {% block body %}                                    
+            {% endblock %}  
+    </div>              
+    
+	  <footer>
+		<br />
+		&copy; 2016 BrowserShots <i class="fa fa-trademark"></i> 
+		<br />
+	  </footer>
+
+   </div> 
+   <link rel="stylesheet" type="text/css" href="{% static 'css/seo.css' %}">
+ </body>
+</html>
+            
+

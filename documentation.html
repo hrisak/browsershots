@@ -1,0 +1,41 @@
+{% extends "site_base.html" %}
+{% block head_title %}Documentation - BrowserShots{% endblock %}
+{% block viewport %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="keywords" content="browsershots documentation, AWS, Elasticbeanstalk, PhantomJs, user agent strings, screenshots" />
+<meta name="description" content="BrowserShots takes PRIVATE screen shots of webpages using user agent strings with a headless browser called PhantomJS using Linux. The magic of PhantomJS combined with a Python Django based website.  Screen shots allow webmasters to quickly see HTML errors that need to be corrected.  " />
+{% endblock %}
+{% block extra_head %}
+<h1>Directions for using BrowerShots to improve mobile SEO</h1>
+Mobile device WIDTHS must be correct or your SEO score will be affected.  Search engines check websites to see if they are "mobile ready".  A web page that is wider than it should be for a particular device will hurt its overall SEO score.  Nearly 50% of all Internet traffic is performed using mobile devices (Cell Phones and Tablets).  The importance of Mobile SEO can no longer be ignored! <br /><br /><h2>BrowserShots</h2> Use BrowserShots to take screen shots that allow you to quickly see HTML Width ERRORS on over 350 devices.    
+{% endblock %}
+{% block body %}       
+               [1] Visit <a href="https://www.browsershots.net">BrowserShots</a> and type in a URL, then check the boxes in the grid/table to select the mobile devices you wish to use and hit Submit.
+               <u>Note:</u> <b>A lot of times the URL will be updated (adding www or https) and you will have press the submit button again.</b>
+               <br /><br />
+               [2] You will be redirected to the <a href="https://www.browsershots.net/screenshots/screenshots/">ScreenShots</a> page.  Every 30 seconds the grid/table is updated to display screenshots as they are taken.  (Normally a screen shot only takes 1-2 minutes to be taken).
+               <br /><br />          
+               [3] If your screenshot(s) are taking too long or you're just inpatient you can visit the <a href="https://www.browsershots.net/screenshots/pending/">Pending ScreenShots</a> page to see if they have been put into Queue yet.  Once the Pending screenshot(s) have been taken they will disappear from the Pending ScreenShots page.
+               <br /><br />      
+               <u>Important Notes:</u> For your own safety and protection all screen shots are uploaded and displayed via Amazon Web Services S3 buckets.  If a webpage contained a virus and infected the screen shot Amazon will not let anyone view it (you will get an error message instead).  If BrowserShots takes a screenshot of a large webpage or one that loads slowly, the screenshot may not contain all of the pictures or text in it.
+               <br /><br />       
+
+   <h2>BrowserShots - Tech [1]</h2>   
+               Frontend: Python/Django, JavaScript, JQuery, Ajax, HTML5, CSS, Bootstrap 4A, FontAwesome, Datatables<br />
+               Backend: Postgresql, Ubuntu, Apache, cron jobs, PhantomJs
+               <br /><br />
+               BrowserShots uses a combination of open source technologies to provide <u>PRIVATE screen shots</u> of webpages for cell phones and tablets.  <a href="https://en.wikipedia.org/wiki/User_agent" target="_blank">User Agent</a> strings are passed to a headless browser called PhantomJS running on Ubuntu Linux to take each screenshot.  A user agent string provides useful information about the device visiting a website -- <i>computer, cell phone, tablet, OS, browser name</i>, etc --.  However; user agents do not provide one key piece of information -- the device's <i>screen width</i> --.  Through additional data gathering I created a database that paired the width size to its corresponding user agent for over 350 <a href="https://www.browsershots.net/screenshots/devicelist/">mobile devices</a> (cell phones & tablets).
+    <br /><br />        
+
+   <h3>BrowserShots - Tech [2]</h3>
+      I am running BrowserShots.net using Amazon Web Services (AWS) using 1 RDS PostgreSQL database, 3 EC2 instances (2 are spot instances) and an S3 bucket.  I use the Elastic Beanstalk Command Line Interface (EB CLI) from my remote Ubuntu computer to upload or make changes to my website.  The First time uploading a website/app using (EB CLI) will (1) securely create an EC2 instance, (2) create security groups and (3) create load balancers.  I then access my web-browser and login to my AWS account.  From there I manually connect the newly created security group to my PostgreSQL database and configure DNS using Route53.  Once this first time process is completed I only need to type two commands from the bash shell to update any of my code on BrowserShots:
+      <br />
+      <br />
+      eb init
+      <br />  
+      eb deploy
+   <br /><br />
+   <h4>BrowserShots - Tech [3]</h4>
+
+      The 2 spot instances are running a custom Python script that I created.  This script uses Select statements to see if any new screenshots need to be taken.  This database connection takes place every 60 seconds.  When pending items are found in RDS PostgreSQL database the Python script uses a headless browser called PhantomJS to take the screen-shots.  While taking the screen-shots the script updates and inserts information into the database while uploading each image taken to an S3 bucket.  When the process is complete a website visitor can view the screen-shots taken and all of the additional information I provide.  The statistics provided on the ScreenShots web-page includes the target width(s) and the actual width(s) that were observed when the screen-shot was taken.  BrowserShots stores a cookie on the visitors computer that contains every domain name submitted with the last 48 hours.  This keeps all of a visitors screenshots almost exclusively private.  The only way another visitor can view your screen shots is if they submit the same domain name (URL) for screenshot(s) within the same 24 hour period.  This provides privacy but also introduces a unqiue sharing ability for co-workers, by allowing a co-worker to view all of the screenshots you've taken with only have to submit one screenshot for a given Domain Name.  The Domain Name cookie expires after 48 hours, but FREE <a href="https://www.browsershots.net">screenshots</a> are only available for 24 hours.
+{% endblock %}

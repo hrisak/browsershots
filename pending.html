@@ -1,0 +1,26 @@
+{% extends "site_base.html" %}
+
+{% block head_title %}Mobile Cross Browser Testing - Queue{% endblock %}
+
+{% block viewport %}
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta name="keywords" content="browsershots, screenshots, cross browser testing, screen shot, mobile browsershots, cross browser compatibility" />          
+            <meta name="description" content="Screen shots waiting to be completed by browsershots cross browser testing emulator.  Screen shots are automatically taken using our free online screenshot generator." />
+{% endblock %}
+
+{% block extra_head %}
+
+<h2>Pending</h2>
+Pending <i>screenshots</i> in queue.  Refresh occurs every 60 seconds.
+<br /> 
+<p style="color:#ff0000;" class="timer"></p>
+<br />
+
+{% load table_tags %} 
+{% endblock %}
+
+{% block body %}
+<br /> 
+
+{% render_pendingtable pending %}			
+{% endblock %}                

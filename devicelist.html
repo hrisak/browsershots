@@ -1,0 +1,19 @@
+{% extends "site_base.html" %}
+
+{% block head_title %}Mobile Device List - BrowserShots{% endblock %}
+
+{% block viewport %}
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta name="keywords" content="cell phones test, free screen shots, browser screen shots list, browser compatability devices, android, iphones, samsung galaxy, ipad tablets, ipod testing" />            
+            <meta name="description" content="BrowserShots mobile list of devices are easily search through and provide detailed information about a particular cell phone or tablet.  The device list is used along with a custom screen shot framework to process screen shots quickly using multiple servers in a secure environment." />
+{% endblock %}
+{% block extra_head %}
+	      <h1>Mobile Devices</h1>
+		  The grid/table below is a list of all of the mobile devices that we currently offer for screen shot testing at BrowserShots. Each device in our list is connected to a user agent string and designed to take screen shots in a safe private environment for visitors.  The <a href="https://www.browsershots.net">SEO optimization for mobile devices</a> is made easy using our screen shot framework.
+{% endblock %}
+
+{% block body %}
+   {% load table_tags %}
+   {% render_devicelisttable devicelist %}
+{% endblock %}
+                   

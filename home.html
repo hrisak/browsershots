@@ -1,0 +1,38 @@
+{% extends "site_base.html" %}
+{% load static %}
+{% block head_title %}BrowserShots - free browser screenshots for mobile devices, mobile seo optimization made easy{% endblock %}
+
+{% block viewport %}    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="msvalidate.01" content="1EB0E3D677A7A6EA80A03F89CABDBECE" />    
+    <meta name="description" content="BrowserShots - free browser screenshots using mobile device emulators. Screenshots are taken with user agents and provide screenshot widths to help with mobile device optimization." />
+{% endblock %}
+
+{% block extra_head %}
+	      <h1>BrowserShots creates browser screenshots using mobile device emulators</h1>
+          Take free private mobile <i>browser screenshots</i> for cell phones and tablets.
+		  <i>BrowserShots</i> detects incorrect <u>width sizes</u> while providing full length webpage screenshots, thumbnails, model and device information.
+          Webpage widths are listed next to each browser screenshot to help web developers find HTML seo errors.     
+          <h2>Improve mobile seo by using BrowserShots</h2>
+          <img src="{% static "images/Tablet.png" %}" alt="Tablets" width="18px" height="35px" /> - <i>Tablets</i>  
+          <img src="{% static "images/Cell-Phone.png" %}" alt="Cell Phones" width="13px" height="18px" /> - <i>Cell Phones</i>
+{% endblock %}
+{% block body %}
+        <p></p>
+            
+			<form class="form-horizontal" method="post" action="{{ action_url }}">{% csrf_token %}      
+			    <table>                
+		        {{ form.as_table }}
+		        <tr><td colspan="2"><button type="submit" class="btn btn-primary btn-lg">Submit</button></td></tr>
+		        </table>
+		    </form>
+            <br /> 
+ 
+   
+{% load table_tags %}
+{% render_devicetable devices %}    
+   
+{% endblock %}
+
+
+

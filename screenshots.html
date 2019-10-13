@@ -1,0 +1,28 @@
+{% extends "site_base.html" %}
+
+{% block head_title %}PRIVATE Browser Screenshots - BrowserShots{% endblock %}
+{% block viewport %}
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta name="keywords" content="private, mobile ready seo testing, private screen shots, cell phone screenshots, cross browser testing" />           
+            <meta name="description" content="BrowserShots (Screen Shots) are session based to provide a PRIVATE cross browser testing experience.  There is no need to login or register.  Screenshots taken will only be shown to visitors who submit a given Domain.  This keeps others from viewing your mobile ready seo screenshot tests on BrowserShots." />
+{% endblock %}
+{% block extra_head %}
+<h1>Mobile Screenshots</h1>
+Mobile device information is only available for 24 hours. Click the "<u>view</u>" link for each <a href="https://www.browsershots.net">screenshot</a> to see a full screenshot of your webpage.
+<h2>Mobile SEO</h2>
+Correct screen widths are an important part of <a href="https://www.browsershots.net">mobile seo</a>.
+<br /> 
+<p style="color:#ff0000;" class="timer"></p>
+{% endblock %}
+
+{% block body %}
+
+
+<br />
+                     
+{% load table_tags %}
+{% render_table screenshots %}
+
+{% endblock %}
+                  
+
